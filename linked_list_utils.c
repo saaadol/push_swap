@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linked_list_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/12 18:35:17 by souledla          #+#    #+#             */
+/*   Updated: 2023/01/12 18:41:07 by souledla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+
+void *create_node(int data)
+{
+	l_list *node = malloc(sizeof(l_list));
+	node -> data = data;
+	node ->next = NULL;
+	return node;
+}
+void append_node(l_list **head, l_list *node)
+{
+	
+	if (!*head)
+		*head = node;
+	l_list *current = *head;
+	while ((*head) -> next != NULL)
+		*head = (*head) -> next;
+	(*head) -> next = node;
+	node -> next = NULL;
+	*head = current;
+	//printf("%d", (*head)->next->next->data);
+}
+void get_node(l_list *head, int index)
+{
+	int counter = 0;
+	l_list *current = head;
+	while (head -> next != NULL)
+	{
+		if (counter == index)
+		{
+			printf("%d", head->data);
+			break;
+		}
+		head = head->next;
+		counter++;
+	} 
+	head = NULL;
+}

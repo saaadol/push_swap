@@ -1,6 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 16:37:22 by souledla          #+#    #+#             */
+/*   Updated: 2023/01/10 16:37:23 by souledla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
 static void	skip_space(char *nptr, int *i)
 {
 	while (nptr[*i] == 32 || (nptr[*i] >= 9 && nptr[*i] <= 13))
@@ -43,14 +61,30 @@ int	ft_atoi(char *nptr)
 		x[0]++;
 	}
 	return (result * x[1]);
-}  
-
-int main(int ac, char **av)
+} 
+void checking_double(int **str, int ac)
 {
-	
-    int i = 0;
+	int i = 0;
+	int j = 0;
+	while(i < (ac - 1))
+	{
+		j = i+1;
+		while(j < (ac -1))
+		{
+			if (*str[i] == *str[j])
+			{
+				printf("%s","Error \n");
+				break;
+			}
+			j++;
+		}
+		i++;
+	}
+} 
+int **filling_array(int **str, int ac, char **av)
+{
+	int i = 0;
     int j = 0;
-    int **str;
     str = malloc((ac-1) * sizeof(int));
     while (i < (ac-1))
     {
@@ -64,21 +98,28 @@ int main(int ac, char **av)
 		str[i][j] = '\0';
         i++;
     }
-	i = 0;
-	j = 0;
-	while(i < (ac - 1))
+	return str;
+}
+void checking_str(char **av, int ac)
+{
+	int i = 1;
+	int j = 0;
+	int flag = 0; 
+	while(i < (ac))
 	{
-		j = i+1;
-		while(j < (ac -1))
+		j = 0;
+		while (av[i][j])
 		{
-			if (*str[i] == *str[j])
+			if (ft_isdigit(av[i][j]) == 0)
 			{
-				printf("%c",'f');
+				printf("%s","Error \n");
+				flag = 1;
 				break;
 			}
 			j++;
 		}
-		i++;
+		if (flag == 1)
+			break; 
+		i++;		
 	}
-    return 0;
 }
