@@ -31,3 +31,5 @@ void case5(l_list **stack_a, l_list **stack_b)
     ra(stack_a);
     push_a(stack_a, stack_b); 
 }
+// int how_many_moves()
+// case 100

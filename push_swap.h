@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/12 18:41:49 by souledla         ###   ########.fr       */
+/*   Updated: 2023/01/14 22:26:48 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <string.h>
 typedef struct l_list{
 	int data;
+	int index;
 	struct l_list *next;
 } l_list;
 int	ft_isdigit(int c);
@@ -33,6 +34,9 @@ void rra(l_list **stack_a);
 void case3(l_list **head);
 void ra(l_list **stack_a);
 void push_a(l_list **stack_a, l_list **stack_b);
-void case5(l_list **stack_a, l_list **stack_b) ;
+void case5(l_list **stack_a, l_list **stack_b);
+void counting_index(l_list **stack_a, int x, int *index);
+void committing_index(l_list **stack_a);
+
 
 #endif

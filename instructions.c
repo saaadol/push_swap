@@ -85,18 +85,13 @@ int main()
 	l_list *stack_b = create_node(5);
 	append_node(&stack_b,create_node(1));
 	append_node(&stack_b,create_node(2));
-	append_node(&stack_b,create_node(4));
+	append_node(&stack_b,create_node(-1));
 	append_node(&stack_b,create_node(3));
-	case5(&stack_b, &stack_a);
-	
+	committing_index(&stack_b);
 	while (stack_b != NULL)
 	{
-		printf("%d \n", stack_b -> data);
+		printf("%d", stack_b -> index);
 		stack_b = stack_b -> next;
 	}
-	while (stack_a != NULL)
-	{
-		printf("%d \n", stack_a -> data);
-		stack_a = stack_a -> next;
-	}
+	
 }
