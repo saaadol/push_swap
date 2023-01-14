@@ -27,4 +27,12 @@ int **filling_array(int **str, int ac, char **av);
 void checking_str(char **av, int ac);
 void *create_node(int data);
 void append_node(l_list **head, l_list *node);
+int lst_size(l_list **head);
+void swap_a(l_list **head);
+void rra(l_list **stack_a);
+void case3(l_list **head);
+void ra(l_list **stack_a);
+void push_a(l_list **stack_a, l_list **stack_b);
+void case5(l_list **stack_a, l_list **stack_b) ;
+
 #endif

@@ -26,6 +26,7 @@ int main()
 	append_node(&head, new_node);	
 	append_node(&head, new_node_2);
 	append_node(&head, new_node_3);
+	printf("%d", lst_size(&head));
 
 	// printf("%p \n \n", head);
 	//ra(&head);

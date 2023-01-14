@@ -82,17 +82,21 @@ void rra(l_list **stack_a)
 int main()
 {
 	l_list *stack_a = NULL;
-	l_list *stack_b = create_node(0);
+	l_list *stack_b = create_node(5);
 	append_node(&stack_b,create_node(1));
-	//append_node(&stack_b,create_node(2));
-	rra(&stack_b);
-	rra(&stack_b);
-	//rb(&stack_b);
+	append_node(&stack_b,create_node(2));
+	append_node(&stack_b,create_node(4));
+	append_node(&stack_b,create_node(3));
+	case5(&stack_b, &stack_a);
 	
 	while (stack_b != NULL)
 	{
 		printf("%d \n", stack_b -> data);
 		stack_b = stack_b -> next;
 	}
-
+	while (stack_a != NULL)
+	{
+		printf("%d \n", stack_a -> data);
+		stack_a = stack_a -> next;
+	}
 }

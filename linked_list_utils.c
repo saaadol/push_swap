@@ -49,3 +49,14 @@ void get_node(l_list *head, int index)
 	} 
 	head = NULL;
 }
+int lst_size(l_list **head)
+{
+	int counter; 
+	counter = 0;
+	while ((*head))
+	{
+		*head = (*head) -> next;
+		counter++; 
+	}
+	return counter;
+}
