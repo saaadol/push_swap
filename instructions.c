@@ -15,27 +15,15 @@ void swap_a(l_list **head)
 
 void push_a(l_list **stack_a, l_list **stack_b)
 {
-	l_list *ptr;
-	l_list *current;
-	
-	
-	if (!(*stack_b))
-		return ;
-	else if (!*stack_a)
-	{
-		ptr = (*stack_b) -> next;
-		*stack_a = *stack_b;
-		*stack_b = ptr;
-		(*stack_a) -> next = NULL;
-	}
-	else
-	{
-		ptr = *stack_b;
-		current = (*stack_b) -> next;
-		(*stack_b) -> next = *stack_a; 
-		*stack_a = ptr;
-		*stack_b = current; 
-	}
+    if (!(*stack_b))
+        return ;
+    l_list *new_node = malloc(sizeof(l_list));
+    new_node->data = (*stack_b)->data;
+    new_node->next = *stack_a;
+    *stack_a = new_node;
+    l_list *temp = *stack_b;
+    *stack_b = (*stack_b)->next;
+    free(temp);
 }
 
 void ra(l_list **stack_a)
@@ -81,17 +69,24 @@ void rra(l_list **stack_a)
 
 int main()
 {
-	l_list *stack_a = NULL;
-	l_list *stack_b = create_node(5);
-	append_node(&stack_b,create_node(1));
-	append_node(&stack_b,create_node(2));
-	append_node(&stack_b,create_node(-1));
-	append_node(&stack_b,create_node(3));
-	committing_index(&stack_b);
-	while (stack_b != NULL)
+	int i = 0;
+	int x;
+	l_list *stack_a = create_node(0);
+	l_list *stack_b = create_node(0);
+	while (i < 100)
 	{
-		printf("%d", stack_b -> index);
-		stack_b = stack_b -> next;
+		append_node(&stack_b, create_node(rand() % 100));
+		i++;
 	}
 	
+	
+	// l_list *stack_b = create_node(0);
+	committing_index(stack_b);
+	case100(&stack_a, &stack_b);
+	
+	while (stack_a != NULL)
+	{
+		printf(" data -> %d , index -> %d \n", stack_a -> data, stack_a -> index);
+		stack_a = stack_a -> next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/14 22:26:48 by souledla         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:14:09 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void case3(l_list **head);
 void ra(l_list **stack_a);
 void push_a(l_list **stack_a, l_list **stack_b);
 void case5(l_list **stack_a, l_list **stack_b);
-void counting_index(l_list **stack_a, int x, int *index);
-void committing_index(l_list **stack_a);
+void counting_index(l_list *stack_a, int x, int *index);
+void committing_index(l_list *stack_a);
+void case100(l_list **stack_a, l_list **stack_b);
 
 
 #endif
