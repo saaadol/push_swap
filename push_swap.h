@@ -37,7 +37,7 @@ void push_a(l_list **stack_a, l_list **stack_b);
 void case5(l_list **stack_a, l_list **stack_b);
 void counting_index(l_list *stack_a, int x, int *index);
 void committing_index(l_list *stack_a);
-void case100(l_list **stack_a, l_list **stack_b);
+void case100(l_list **stack_a, l_list **stack_b, int size);
 
 
 #endif

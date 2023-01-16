@@ -28,7 +28,7 @@ void push_a(l_list **stack_a, l_list **stack_b)
 
 void ra(l_list **stack_a)
 {
-	if (!(*stack_a))
+	if (!(*stack_a) || !((*stack_a)->next))
 		return ;
 	int current_data_node;
 	l_list *current;
@@ -69,24 +69,30 @@ void rra(l_list **stack_a)
 
 int main()
 {
-	int i = 0;
-	int x;
-	l_list *stack_a = create_node(0);
-	l_list *stack_b = create_node(0);
-	while (i < 100)
-	{
-		append_node(&stack_b, create_node(rand() % 100));
-		i++;
-	}
-	
-	
-	// l_list *stack_b = create_node(0);
-	committing_index(stack_b);
-	case100(&stack_a, &stack_b);
-	
-	while (stack_a != NULL)
-	{
-		printf(" data -> %d , index -> %d \n", stack_a -> data, stack_a -> index);
-		stack_a = stack_a -> next;
-	}
+    l_list *stack_a = NULL;
+    l_list *stack_b = NULL;
+    int i = 0;
+    while (i < 100)
+    {
+        l_list *new_node = malloc(sizeof(l_list));
+        new_node->data = rand() % 100;
+        new_node->next = stack_b;
+        stack_b = new_node;
+        i++;
+    }
+    committing_index(stack_b);
+    int size = lst_size(&stack_b);
+    case100(&stack_a, &stack_b, size);
+    printf("Sorted Stack: ");
+    l_list *current = stack_a;
+    while (current != NULL)
+    {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+    return 0;
 }
+
+
+

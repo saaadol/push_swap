@@ -33,33 +33,26 @@ void case5(l_list **stack_a, l_list **stack_b)
 }
 // int how_many_moves()
 // case 100
-void case100(l_list **stack_a, l_list **stack_b)
+void case100(l_list **stack_a, l_list **stack_b, int size)
 {
-	int len;
-	int chunk = 20;
-	int counter = 0;
-	int rem;
-	l_list *current1 = *stack_a;
-	l_list *current2 = *stack_b;
-	len = lst_size(stack_b);
-	//printf("%d", len);
-	printf("%d \n \n", (*stack_b) -> next -> index);
-	while (*stack_b != NULL)
-	{
-		if ((*stack_b) -> index < (chunk / 2))
-		{
+    int chunk = size / 5;
+    if (size % 5)
+        chunk++;
+    int counter = 0;
+    while (*stack_b != NULL)
+    {
+        if ((*stack_b)->index < (chunk / 2))
+        {			
+            push_a(stack_a, stack_b);
+            counter++;
+        }
+        else if ((*stack_b)->index >= (chunk / 2))
+        {
 			
-			push_a(stack_a, stack_b);
-			counter++;
-		}
-		else if  ((*stack_b) -> index >= chunk / 2)
-		{
-			push_a(stack_a, stack_b);
-			ra(stack_a);
-			counter++;
-		}
-		*stack_b = (*stack_b) -> next;
-	}
-	*stack_a = current1;
-	*stack_b = current2;
+            push_a(stack_a, stack_b);
+            ra(stack_a);
+            counter++;
+        }
+        *stack_b = (*stack_b)->next;
+    }
 }
