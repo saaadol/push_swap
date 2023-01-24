@@ -1,97 +1,145 @@
 #include "push_swap.h"
-void swap_a(l_list **head)
-{
-	if (!*head || !(*head) -> next)
-		return ;
-	int temp1;
-	int temp2;
-	l_list *current = *head;
-	temp1 = (*head) ->	data;
-	temp2 = (*head) -> next -> data;
-	*head = current;
-	(*head) -> data = temp2;
-	(*head) -> next -> data = temp1;
+#include <time.h>
+void swap_a(l_list **stack_a) {
+    l_list *first = *stack_a;
+    l_list *second = first->next;
+    first->next = second->next;
+    second->next = first;
+    *stack_a = second;
+	printf("stack \n");
 }
 
 void push_a(l_list **stack_a, l_list **stack_b)
 {
     if (!(*stack_b))
         return ;
-    l_list *new_node = malloc(sizeof(l_list));
-    new_node->data = (*stack_b)->data;
-    new_node->next = *stack_a;
-    *stack_a = new_node;
-    l_list *temp = *stack_b;
-    *stack_b = (*stack_b)->next;
-    free(temp);
+    l_list *head = 	*stack_b;
+	*stack_b = (*stack_b) -> next;
+	head -> next = (*stack_a);
+	*stack_a = head;
+	printf("push_a \n");
 }
 
 void ra(l_list **stack_a)
 {
 	if (!(*stack_a) || !((*stack_a)->next))
 		return ;
-	int current_data_node;
-	l_list *current;
-	current = *stack_a;
-	current_data_node = (*stack_a) -> data; 
-	while ((*stack_a) -> next != NULL)
-	{
-		(*stack_a) -> data = (*stack_a) -> next -> data;
-		(*stack_a) -> next -> data  = current_data_node;  
-		(*stack_a) = (*stack_a) -> next; 
-	}
-	*stack_a = current;
-}
-
-void rra(l_list **stack_a)
-{ 
-	if (! (*stack_a) -> next)
-		return ;
-	l_list *current;
-	l_list *last; 
-	current = *stack_a;
+	l_list *head;
+	l_list	*current;
 	
-	while ((*stack_a) != NULL)
+	current = *stack_a;
+	head = *stack_a;
+	*stack_a = (*stack_a)->next;
+	while (head->next != NULL)
 	{
-		if ((*stack_a) -> next -> next == NULL)
-		{
-			last = (*stack_a) -> next ;
-			last -> next = current;
-			(*stack_a) -> next = NULL;
-			break;
-		}
-		
-		*stack_a = (*stack_a) -> next;
+		head = head -> next; 
 	}
-	*stack_a = last; 
+	head -> next = current;
+	head->next->next = NULL;
+
+	printf("ra \n");
+}
+void ss(l_list **stack_a, l_list **stack_b)
+{
+	swap_a(stack_a);
+	swap_a(stack_b);
+	printf("ss \n");
 }
 
+void rr(l_list **stack_a, l_list **stack_b)
+{
+	ra(stack_a);
+	ra(stack_b);
+	printf("rr \n");
+}
+
+void rra(l_list **head) {
+ if (*head == NULL || (*head)->next == NULL) {
+        return;
+ }
+    l_list *last = *head;
+    l_list *prev = NULL;
+    while (last->next != NULL) {
+        prev = last;
+        last = last->next;
+    }
+    prev->next = NULL;
+    last->next = *head;
+    *head = last;
+	printf("rra \n");
+}
 
 int main()
 {
-    l_list *stack_a = NULL;
+	int i, j, temp, nums[100];
     l_list *stack_b = NULL;
-    int i = 0;
-    while (i < 100)
-    {
-        l_list *new_node = malloc(sizeof(l_list));
-        new_node->data = rand() % 100;
-        new_node->next = stack_b;
-        stack_b = new_node;
-        i++;
+
+    // Seed the random number generator
+    //srand(time(NULL));
+
+    // Initialize the array with integers from 1 to 100
+    for (i = 0; i < 100; i++) {
+        nums[i] = i + 1;
     }
-    committing_index(stack_b);
-    int size = lst_size(&stack_b);
-    case100(&stack_a, &stack_b, size);
-    printf("Sorted Stack: ");
-    l_list *current = stack_a;
+
+    // Shuffle the array using the Fisher-Yates algorithm
+    for (i = 99; i > 0; i--) {
+        j = rand() % (i + 1);
+        temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // Add the first 100 integers to the linked list
+    for (i = 0; i < 100; i++) {
+        l_list *node = create_node(nums[i]);
+        node->next = stack_b;
+        stack_b = node;
+    }
+    
+	l_list *current = stack_b;
+	int size = lst_size(stack_b);
+
+	// while (current != NULL)
+    // {
+    //     printf("num -> %d , index -> %d \n", current->data, current->index);
+    //     current = current->next;
+    // }
+	l_list *stack_a = NULL;
+ 	case100(&stack_a, &stack_b, size);
+	//printf("%d", searching_for_index(&stack_a,  check_smallest_index(stack_a)));
+	
+	// int pos = 0;
+	//sorting(&stack_a, &stack_b);
+	// printf("%d", pos);
+	//printf(" %d",pos);
+	//committing_index(stack_b);
+	// int position = 0;
+	//repush_to_b(&stack_a, &stack_b);
+	//sorting(&stack_a, &stack_b);
+    current = stack_a;
+	int position = 0;
     while (current != NULL)
     {
-        printf("%d ", current->data);
-        current = current->next;
-    }
-    printf("\n");
-    return 0;
+		printf("%d \n", current->data);
+		current = current->next;
+	}
+	//printf("%d", searching_for_index(stack_a, 91));
+	//printf("%d",stack_a -> next -> index);
+	//printf("%d", current -> next ->  index);
+	//l_list *empty = NULL;
+	// l_list *test = create_node(0);
+	// append_node(&test, create_node(1));
+	// append_node(&test, create_node(2));
+	// append_node(&test, create_node(3));
+	// swap_a(&test);
+	
+	// while (test)
+	// {
+	// 	printf("%d \n", test -> data);
+	// 	test = test -> next;
+	// }
+
 }
 
 

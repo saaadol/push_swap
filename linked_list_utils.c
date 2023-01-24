@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:35:17 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/15 18:58:27 by souledla         ###   ########.fr       */
+/*   Updated: 2023/01/22 05:40:00 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,17 @@ void get_node(l_list *head, int index)
 	} 
 	head = NULL;
 }
-int lst_size(l_list **head)
+int lst_size(l_list *head)
 {
-	l_list *current;
-	current = *head;
+	if (head == NULL)
+		return 0;
+	l_list *current = head;
 	int counter; 
 	counter = 0;
-	while ((*head))
+	while (current)
 	{
-		*head = (*head) -> next;
+		current = current -> next;
 		counter++; 
 	}
-	*head = current;
 	return counter;
-	
 }

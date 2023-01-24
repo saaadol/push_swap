@@ -15,10 +15,23 @@ void counting_index(l_list *stack_a, int x, int *index)
 
 void committing_index(l_list *stack_a)
 {
-    l_list *current = stack_a;
-    while (current != NULL)
-    {
-        counting_index(stack_a, current->data, &current->index);
-        current = current->next;
-    }
+    int i;
+	int j; 
+	l_list *temp;
+	l_list *head;
+	head = stack_a;
+	while (stack_a)
+	{
+		i = 0;
+		j = stack_a -> data;
+		temp = head;
+		while (temp)
+		{
+			if (temp -> data < j)
+				i++;
+			temp = temp -> next;
+		}
+		stack_a -> index = i;
+		stack_a = stack_a ->next;
+	}
 }

@@ -2,7 +2,7 @@ NAME = push_swap.a
 files = push_swap.c
 OBJ = $(NAME.c = .o)
 CC = cc
-CFLAGS = -Wall -Wflag -Werror -I push_swap.h
+CFLAGS = -Wall -Wflag -Werror  -I push_swap.h
 
 all: $(NAME)
 $(NAME): $(OBJ)
