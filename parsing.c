@@ -11,13 +11,20 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
+}
+int ft_strlen(char *str)
+{
+    int i = 0;
+    while (str[i])
+    {
+       i++;
+    }
+    return i;  
 }
 static void	skip_space(char *nptr, int *i)
 {
@@ -35,33 +42,37 @@ static void	result_sign(char *str, int *i, int *sign)
 	else if (str[*i] == '+')
 		(*i)++;
 }
-
-int	ft_atoi(char *nptr)
+int ft_atoi(char *nptr)
 {
-	int	x[2];
-	int	result;
-	int	temp;
+    int x[2];
+    long long result;
+    int temp;
 
-	x[0] = 0;
-	x[1] = 1;
-	result = 0;
-	skip_space(nptr, &x[0]);
-	result_sign(nptr, &x[0], &x[1]);
-	while ((nptr[x[0]] >= 48 && nptr[x[0]] <= 57))
-	{
-		temp = result;
-		result = result * 10;
-		if (result / 10 != temp && result)
-		{
-			if (x[1] == -1)
-				return (0);
-			return (-1);
-		}
-		result += nptr[x[0]] - 48;
-		x[0]++;
-	}
-	return (result * x[1]);
-} 
+    x[0] = 0;
+    x[1] = 1;
+    result = 0;
+    skip_space(nptr, &x[0]);
+    result_sign(nptr, &x[0], &x[1]);
+    while (nptr[x[0]] >= 48 && nptr[x[0]] <= 57)
+    {
+        temp = result;
+        result = result * 10;
+        if (result / 10 != temp && result)
+        {
+            printf("Error \n");
+            exit(EXIT_FAILURE);
+        }
+        result += nptr[x[0]] - 48;
+        if (result * x[1] >= INT_MAX || result * x[1] <= INT_MIN)
+        {
+            printf("Error \n");
+            exit(EXIT_FAILURE);
+        }
+        x[0]++;
+    }
+    return (result * x[1]);
+}
+
 void checking_double(int **str, int ac)
 {
 	int i = 0;
@@ -80,46 +91,180 @@ void checking_double(int **str, int ac)
 		}
 		i++;
 	}
-} 
-int **filling_array(int **str, int ac, char **av)
+}
+void	ft_bzero(void *s, size_t n)
 {
-	int i = 0;
-    int j = 0;
-    str = malloc((ac-1) * sizeof(int));
-    while (i < (ac-1))
+	size_t	i;
+	char	*temp;
+
+	if (n == 0)
+		return ;
+	temp = (char *) s;
+	i = 0;
+	while (i < n)
+	{
+		temp[i] = '\0';
+		i++;
+	}
+}
+/*
+l_list *filling_list(l_list *head, int ac, char **av)
+{
+    int i = 1;
+    l_list *temp = NULL;
+    int number = 0;
+
+    while (i < ac)
     {
-        str[i] = malloc(strlen(av[i+1]) * sizeof(int));
-        j = 0;
-        while (av[i+1][j])
+        number = ft_atoi(av[i]);
+        if (!temp)
         {
-            str[i][j] = ft_atoi(&av[i+1][j]);
-            j++;
+            head = malloc(sizeof(l_list));
+            head->data = number;
+            head->next = NULL;
+            temp = head;
         }
-		str[i][j] = '\0';
+        else
+        {
+            temp->next = malloc(sizeof(l_list));
+            temp->next->data = number;
+            temp->next->next = NULL;
+            temp = temp->next;
+        }
         i++;
     }
-	return str;
+    return head;
 }
+*/
+char **ft_split(char *s, char c)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int count = 0;
+    char **str;
+    while (s[i] != '\0')
+    {
+        if (s[i] == c)
+            count++;
+        i++;
+    }
+    count++;
+    str = (char**)malloc(sizeof(char*) * (count + 1));
+    i = 0;
+    while (s[i] != '\0')
+    {
+        if (s[i] == c || s[i + 1] == '\0')
+        {
+            str[k] = (char*)malloc(sizeof(char) * (j + 1));
+            j = 0;
+            k++;
+        }
+        else
+        {
+            j++;
+        }
+        i++;
+    }
+    if (k == count - 1)
+    {
+        str[k] = (char*)malloc(sizeof(char) * (j + 1));
+        str[k][j] = '\0';
+        k++;
+    }
+    str[k] = NULL;
+    k = 0;
+    j = 0;
+    i = 0;
+    while (s[i] != '\0')
+    {
+        if (s[i] == c || s[i + 1] == '\0')
+        {
+            str[k][j] = '\0';
+            j = 0;
+            k++;
+        }
+        else
+        {
+            str[k][j] = s[i];
+            j++;
+        }
+        i++;
+    }
+    return (str);
+}
+
+
+l_list *filling_list(l_list *head, char *s)
+{
+    char **split = ft_split(s, ' ');
+    int i = 0;
+    int number = 0;
+    l_list *temp = NULL;
+
+    while (split[i])
+    {
+        number = ft_atoi(split[i]);
+        if (!temp)
+        {
+            head = malloc(sizeof(l_list));
+            head->data = number;
+            head->next = NULL;
+            temp = head;
+        }
+        else
+        {
+            temp->next = malloc(sizeof(l_list));
+            temp->next->data = number;
+            temp->next->next = NULL;
+            temp = temp->next;
+        }
+        i++;
+    }
+
+    // Check if last split value is not empty
+    if (i > 0 && !split[i-1][0])
+    {
+        // Remove the last node if it's empty
+        temp = head;
+        while (temp->next->next)
+        {
+            temp = temp->next;
+        }
+        free(temp->next);
+        temp->next = NULL;
+    }
+
+    return head;
+}
+
+
+
+
 void checking_str(char **av, int ac)
 {
-	int i = 1;
-	int j = 0;
-	int flag = 0; 
-	while(i < (ac))
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (ft_isdigit(av[i][j]) == 0)
-			{
-				printf("%s","Error \n");
-				flag = 1;
-				break;
-			}
-			j++;
-		}
-		if (flag == 1)
-			break; 
-		i++;		
-	}
+    int i = 1;
+    int j = 0;
+    int flag = 0; 
+    while(i < (ac))
+    {
+        j = 0;
+		if (av[i][0] == '-')
+            j++;
+        while (av[i][j])
+        {
+            if (!ft_isdigit(av[i][j]))
+            {
+                printf("%s","Error \n");
+                flag = 1;
+                break;
+            }
+            j++;
+        }
+        if (flag == 1)
+        {
+            exit(EXIT_FAILURE); 
+        }
+        i++;        
+    }
 }

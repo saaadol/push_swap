@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 typedef struct l_list{
 	int data;
 	int index;
@@ -24,7 +25,6 @@ typedef struct l_list{
 int	ft_isdigit(int c);
 int	ft_atoi(char *nptr);
 void checking_double(int **str, int ac);
-int **filling_array(int **str, int ac, char **av);
 void checking_str(char **av, int ac);
 void *create_node(int data);
 void append_node(l_list **head, l_list *node);
@@ -41,15 +41,29 @@ void case100(l_list **stack_a, l_list **stack_b, int size);
 void sorted_insert(l_list **head, l_list *new_node);
 void insertion_sort(l_list **head);
 l_list* get_last_node(l_list* head);
+l_list *filling_list(l_list *head, char *s);
 void print_reverse(l_list *node) ;
 int check_biggest_index(l_list *stack_a, int *position);
 void repush_to_b(l_list **stack_a, int pos);
 int searching_for_index(l_list **stack_a, int indexx);
+int	ft_isdigit(int c);
 void sorting(l_list **stack_a, l_list **stack_b);
 void ss(l_list **stack_a, l_list **stack_b);
-// void sorting(l_list *stack_a, l_list *stack_b);
-void case1000(l_list **stack_a, l_list **stack_b, int size);
+void util_stack_b(l_list **stack_a, l_list **stack_b, int *max, int *index);
+void util(l_list **stack_a, l_list **stack_b, int *max , int *index);
+void util_stack_a(l_list **stack_a, l_list **stack_b, int *max, int *index);
 int check_smallest_index(l_list *stack_a);
+void util_fill_stack_b(l_list **stack_a, l_list **stack_b, int *max , int *index);
+int util3(l_list **stack_a, l_list **stack_b, int *max , int *index);
+int util4(l_list **stack_a, l_list **stack_b, int *max , int *index);
+void util5(l_list **stack_a, l_list **stack_b, int *max , int *index);
+void else_statement(l_list **stack_a, l_list **stack_b, int *max , int *index);
 void rr(l_list **stack_a, l_list **stack_b);
+int lst_get_median(l_list *head, int size);
+char	*ft_substr(char  *s, unsigned int start, size_t len);
+char	**ft_split(char *s, char c);
+int 	ft_atoi(char *nptr);
+char	*ft_strjoin(char *s1, char  *s2);
+void	ft_bzero(void *s, size_t n);
 
 #endif

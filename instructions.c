@@ -68,14 +68,14 @@ void rra(l_list **head) {
     *head = last;
 	printf("rra \n");
 }
-
+/*
 int main()
 {
 	int i, j, temp, nums[100];
     l_list *stack_b = NULL;
 
     // Seed the random number generator
-    //srand(time(NULL));
+    srand(time(NULL));
 
     // Initialize the array with integers from 1 to 100
     for (i = 0; i < 100; i++) {
@@ -109,13 +109,14 @@ int main()
  	case100(&stack_a, &stack_b, size);
 	//printf("%d", searching_for_index(&stack_a,  check_smallest_index(stack_a)));
 	
-	// int pos = 0;
-	//sorting(&stack_a, &stack_b);
+	// int  pos = 0;
+	sorting(&stack_a, &stack_b);
 	// printf("%d", pos);
 	//printf(" %d",pos);
 	//committing_index(stack_b);
 	// int position = 0;
 	//repush_to_b(&stack_a, &stack_b);
+	//case3(&stack_b);
 	//sorting(&stack_a, &stack_b);
     current = stack_a;
 	int position = 0;
@@ -141,6 +142,7 @@ int main()
 	// }
 
 }
+*/
 
 
 
