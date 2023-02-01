@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/24 02:32:42 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/01 05:51:41 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct l_list{
 } l_list;
 int	ft_isdigit(int c);
 int	ft_atoi(char *nptr);
-void checking_double(int **str, int ac);
+void checking_double(l_list *stack_b);
 void checking_str(char **av, int ac);
 void *create_node(int data);
 void append_node(l_list **head, l_list *node);
@@ -61,9 +61,11 @@ void else_statement(l_list **stack_a, l_list **stack_b, int *max , int *index);
 void rr(l_list **stack_a, l_list **stack_b);
 int lst_get_median(l_list *head, int size);
 char	*ft_substr(char  *s, unsigned int start, size_t len);
-char	**ft_split(char *s, char c);
+char	**ft_split(char const *s, char c);
 int 	ft_atoi(char *nptr);
 char	*ft_strjoin(char *s1, char  *s2);
 void	ft_bzero(void *s, size_t n);
+ char	**ft_free(char **str, size_t j);
+int	ft_isdigit2(char  *str);
 
 #endif

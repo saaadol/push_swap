@@ -60,6 +60,7 @@ void case100(l_list **stack_a, l_list **stack_b, int size)
 	}
 }
 void repush_to_b(l_list **stack_b, int pos) { 
+
   if(pos == -1)
     return;
     if (pos < (lst_size(*stack_b) / 2)) {
@@ -164,99 +165,77 @@ int checker(l_list **stack_a)
 }
 
     
-void util_stack_b(l_list **stack_a, l_list **stack_b, int *max, int *index)
+void sorting(l_list **stack_a, l_list **stack_b)
 {
-	push_a(stack_a, stack_b);
-	ra(stack_a);
-	(*max)++;
-	*index = searching_for_index(stack_a, (*max));
-}
-void util_stack_a(l_list **stack_a, l_list **stack_b, int *max, int *index)
-{
-	ra(stack_a);
-	(*max)++;
-	*index = searching_for_index(stack_a, (*max));
-}
 
-void util(l_list **stack_a, l_list **stack_b, int *max , int *index)
-{
-	if (((*index) == 1 && (searching_for_index(stack_a, ((*max) + 1)) == 0)) || ((searching_for_index(stack_b, (*max)) == 1) && (searching_for_index(stack_b, ((*max) + 1)) == 0)))
+	int position = 0;
+	int index_b;
+	int max = check_biggest_index(*stack_a, &position);
+	//int tmax =max;
+	int size ;
+	int index = searching_for_index(stack_a, max);
+	//printf("%d ", index);
+	while (((*stack_a) != NULL  && (checker(stack_a) != 0)))
 	{
-		if (((*index) == 1 && (searching_for_index(stack_a, ((*max) + 1)) == 0)))
+		// printf("index : %d\n", index);
+		// printf("checkeer: %d\n", checker(stack_a));
+		// printf("stack_b : %d\n", searching_for_index(stack_b, max));
+		while (index == searching_for_index(stack_a, max))
+		{
+			if (index == lst_size(*stack_a) -1)
+			{
+				max--;
+				index = searching_for_index(stack_a, max);
+			}
+			else if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)) || ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0)))
+				{
+					if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)))
 					{
 						swap_a(stack_a);
-						*index = searching_for_index(stack_a,(*max));
+						index = searching_for_index(stack_a,max);
 					}
-					else if ((searching_for_index(stack_b, (*max)) == 1) && (searching_for_index(stack_b, ((*max) + 1)) == 0))
+					else if ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max - 1)) == 0))
+					{
 						swap_a(stack_b);
+					}
 					else
 					{
 						ss(stack_a, stack_b);
-						*index = searching_for_index(stack_a,*max);
+						index = searching_for_index(stack_a,max);
 					}
-	}
-}
-void util2(l_list **stack_a, l_list **stack_b, int *max , int *index)
-{
-	if (*index == lst_size(*stack_a) -1)
-		*index = searching_for_index(stack_a, (*max)++);
-	else if ((*index == 1 && (searching_for_index(stack_a, ((*max) + 1)) == 0)) || ((searching_for_index(stack_b, (*max)) == 1) && (searching_for_index(stack_b, ((*max) + 1)) == 0)))
-		util(stack_a, stack_b, max, index);
-}
-int util3(l_list **stack_a, l_list **stack_b, int *max , int *index)
-{
-	int flag;
-
-	flag = 0;
-	if (searching_for_index(stack_b, (*max)) == 0)
-		{
-			flag = 1;
-			util_stack_b(stack_a, stack_b, max, index);
-			return flag;
-		}
-		//ra(stack_b);
-		repush_to_b(stack_b, searching_for_index(stack_b, (*max)));
-}
-
-void else_statement(l_list **stack_a, l_list **stack_b, int *max , int *index)
-{
-	push_a(stack_b, stack_a);
-	*index = searching_for_index(stack_a, (*max));
-}
-void sorting(l_list **stack_a, l_list **stack_b)
-{
-	int max;
-	int index;
-	max = check_smallest_index(*stack_a);
-	index = searching_for_index(stack_a, max);
-	//printf("%d---------", index);
-	util5(stack_a, stack_b, &max , &index);
-}
-void util5(l_list **stack_a, l_list **stack_b, int *max , int *index)
-{
-	while (((*stack_a) != NULL  && (checker(stack_a) != 0)) || (*stack_b) != NULL )
-	{
-		while (*index == searching_for_index(stack_a, (*max)))
-		{
-			util2(stack_a, stack_b, max , index);
-			if (searching_for_index(stack_a, (*max)) == 0)
+				}
+			else if (searching_for_index(stack_a, max) == 0)
 			{
-				util_stack_a(stack_a, stack_b, max, index);
+				ra(stack_a);
+				max--;
+				index = searching_for_index(stack_a, max);
 				break;
 			}
-			else if (searching_for_index(stack_a, (*max)) == -1)
+			else if (searching_for_index(stack_a, max) == -1)
 			{
 				while ((*stack_b) != NULL)
 				{
-					util3(stack_a, stack_b, max , index);
-					if (util3(stack_a, stack_b, max , index))
+					if (searching_for_index(stack_b, max) == 0)
+					{
+						push_a(stack_a, stack_b);
+						ra(stack_a);
+						max--;
+						index = searching_for_index(stack_a, (max));
 						break;
+					}
+					//ra(stack_b);
+					repush_to_b(stack_b, searching_for_index(stack_b, max));
 				}
 				break;
 			}
 			else
-				else_statement(stack_a, stack_b, max , index);
+			{
+				push_a(stack_b, stack_a);
+				index = searching_for_index(stack_a, (max));
+			}
+			// printf("%d" ,searching_for_index(stack_a, (max)));
+			// printf("%d" ,searching_for_index(stack_a, (max)));
 		}
 	}
+	//printf("%d", max);
 }
- 

@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:01 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/10 16:39:53 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/01 07:21:06 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int main(int argc, char **argv)
     return 0;
 }
 */
+
 char *ft_join(char **strs, int size, char c)
 {
     int i, j, k, len, tot_len;
@@ -126,30 +127,28 @@ char *ft_join(char **strs, int size, char c)
 }
 int main(int argc, char **argv)
 {
-    if((argc == 1))
-    {
-        printf("Error \n");
+    if(argc == 1)
         exit(EXIT_FAILURE);
-    }
-   // checking_str(argv, argc);
+    checking_str(argv, argc);
 	l_list *stack_b;
     
     char *joined = ft_join(argv + 1, argc - 1, ' ');
     int len = strlen(joined);
     joined[len] = ' ';
-    joined[len + 1] = '\0';
+    joined[len +1] = '\0';
     stack_b = filling_list(stack_b,joined);
+	checking_double(stack_b);
+	free (joined);
     l_list *stack_a = NULL;
 	committing_index(stack_b);
-	//case100(&stack_a,&stack_b,lst_size(stack_b));
-	//sorting(&stack_a, &stack_b);
-	l_list *current = stack_b;
-    printf("%s", stack_b -> next -> next );
-    while (current != NULL)
-    {
-        printf("Data: %d  index : %d\n", current->data, current->index);
-        current = current->next;
-    }
+	case100(&stack_a,&stack_b,lst_size(stack_b));
+	sorting(&stack_a, &stack_b);
+	l_list *current = stack_a;
+    // while (current != NULL)
+    // {
+    //     printf("Data: %d  index : %d\n", current->data, current->index);
+    //     current = current->next;
+    // }
     current = stack_b;
     while (current != NULL)
     {
@@ -157,7 +156,8 @@ int main(int argc, char **argv)
         free(current);
         current = tmp;
     }
-    return 0;
+
+    //exit(1);
 }
 
 

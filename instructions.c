@@ -6,7 +6,7 @@ void swap_a(l_list **stack_a) {
     first->next = second->next;
     second->next = first;
     *stack_a = second;
-	printf("stack \n");
+	printf("sa \n");
 }
 
 void push_a(l_list **stack_a, l_list **stack_b)
@@ -17,7 +17,7 @@ void push_a(l_list **stack_a, l_list **stack_b)
 	*stack_b = (*stack_b) -> next;
 	head -> next = (*stack_a);
 	*stack_a = head;
-	printf("push_a \n");
+	printf("pa \n");
 }
 
 void ra(l_list **stack_a)
