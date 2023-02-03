@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/01 05:51:41 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/03 01:31:14 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ l_list* get_last_node(l_list* head);
 l_list *filling_list(l_list *head, char *s);
 void print_reverse(l_list *node) ;
 int check_biggest_index(l_list *stack_a, int *position);
-void repush_to_b(l_list **stack_a, int pos);
+void a_rotation(l_list **stack_b, int pos);
+void b_rotation(l_list **stack_b, int pos);
+void push_b(l_list **stack_a, l_list **stack_b);
+void rb(l_list **stack_a);
+void sb(l_list **stack_a);
+void rrb(l_list **head);
 int searching_for_index(l_list **stack_a, int indexx);
 int	ft_isdigit(int c);
 void sorting(l_list **stack_a, l_list **stack_b);
@@ -60,6 +65,7 @@ void util5(l_list **stack_a, l_list **stack_b, int *max , int *index);
 void else_statement(l_list **stack_a, l_list **stack_b, int *max , int *index);
 void rr(l_list **stack_a, l_list **stack_b);
 int lst_get_median(l_list *head, int size);
+void test(l_list **stack_a,l_list **stack_b);
 char	*ft_substr(char  *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 int 	ft_atoi(char *nptr);

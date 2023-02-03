@@ -6,9 +6,16 @@ void swap_a(l_list **stack_a) {
     first->next = second->next;
     second->next = first;
     *stack_a = second;
-	printf("sa \n");
+	printf("sa\n");
 }
-
+void swap_b(l_list **stack_a) {
+    l_list *first = *stack_a;
+    l_list *second = first->next;
+    first->next = second->next;
+    second->next = first;
+    *stack_a = second;
+	printf("sb\n");
+}
 void push_a(l_list **stack_a, l_list **stack_b)
 {
     if (!(*stack_b))
@@ -17,7 +24,17 @@ void push_a(l_list **stack_a, l_list **stack_b)
 	*stack_b = (*stack_b) -> next;
 	head -> next = (*stack_a);
 	*stack_a = head;
-	printf("pa \n");
+	printf("pa\n");
+}
+void push_b(l_list **stack_a, l_list **stack_b)
+{
+    if (!(*stack_b))
+        return ;
+    l_list *head = 	*stack_b;
+	*stack_b = (*stack_b) -> next;
+	head -> next = (*stack_a);
+	*stack_a = head;
+	printf("pb\n");
 }
 
 void ra(l_list **stack_a)
@@ -37,20 +54,70 @@ void ra(l_list **stack_a)
 	head -> next = current;
 	head->next->next = NULL;
 
-	printf("ra \n");
+	printf("ra\n");
+}
+void rb(l_list **stack_a)
+{
+	if (!(*stack_a) || !((*stack_a)->next))
+		return ;
+	l_list *head;
+	l_list	*current;
+	
+	current = *stack_a;
+	head = *stack_a;
+	*stack_a = (*stack_a)->next;
+	while (head->next != NULL)
+	{
+		head = head -> next; 
+	}
+	head -> next = current;
+	head->next->next = NULL;
+
+	printf("rb\n");
 }
 void ss(l_list **stack_a, l_list **stack_b)
 {
-	swap_a(stack_a);
-	swap_a(stack_b);
-	printf("ss \n");
+	l_list *first = *stack_a;
+    l_list *second = first->next;
+    first->next = second->next;
+    second->next = first;
+    *stack_a = second;
+
+	first = *stack_b;
+    second = first->next;
+    first->next = second->next;
+    second->next = first;
+    *stack_b = second;
+	printf("ss\n");
 }
 
 void rr(l_list **stack_a, l_list **stack_b)
 {
-	ra(stack_a);
-	ra(stack_b);
-	printf("rr \n");
+	if (!(*stack_a) || !((*stack_a)->next) || !(*stack_b) || !((*stack_b)->next))
+		return ;
+	l_list *head;
+	l_list	*current;
+	
+	current = *stack_a;
+	head = *stack_a;
+	*stack_a = (*stack_a)->next;
+	while (head->next != NULL)
+	{
+		head = head -> next; 
+	}
+	head -> next = current;
+	head->next->next = NULL;
+
+	current = *stack_b;
+	head = *stack_b;
+	*stack_b = (*stack_b)->next;
+	while (head->next != NULL)
+	{
+		head = head -> next; 
+	}
+	head -> next = current;
+	head->next->next = NULL;
+	printf("rr\n");
 }
 
 void rra(l_list **head) {
@@ -66,7 +133,22 @@ void rra(l_list **head) {
     prev->next = NULL;
     last->next = *head;
     *head = last;
-	printf("rra \n");
+	printf("rra\n");
+}
+void rrb(l_list **head) {
+ if (*head == NULL || (*head)->next == NULL) {
+        return;
+ }
+    l_list *last = *head;
+    l_list *prev = NULL;
+    while (last->next != NULL) {
+        prev = last;
+        last = last->next;
+    }
+    prev->next = NULL;
+    last->next = *head;
+    *head = last;
+	printf("rrb\n");
 }
 /*
 int main()

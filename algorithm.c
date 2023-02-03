@@ -37,29 +37,28 @@ void case5(l_list **stack_a, l_list **stack_b)
 
 void case100(l_list **stack_a, l_list **stack_b, int size)
 {
-	int chunk = 20;
+	int stack_size =  size / 20;
+	int chunk = 1;
 	int counter = 0;
-	//int size =lst_size(*stack_b);
-	//committing_index(*stack_b);
-	while(*stack_b != NULL)
+	while(*stack_a != NULL)
 	{	
-		if ((*stack_b) -> index <  chunk)
+		if ((*stack_a) -> index <  chunk)
 		{
-			push_a(stack_a, stack_b);
+			push_b(stack_b, stack_a);
 			counter++;
 		}
 		else if (counter == chunk)
 		{
-			chunk += 20;
+			chunk += 1;
 		}
 		else
 		{
-			repush_to_b(stack_b, searching_for_index(stack_b, (*stack_b) -> index));
+			a_rotation(stack_a, searching_for_index(stack_a, (*stack_a) -> index));
 			
 		}
 	}
 }
-void repush_to_b(l_list **stack_b, int pos) { 
+void a_rotation(l_list **stack_b, int pos) { 
 
   if(pos == -1)
     return;
@@ -69,8 +68,18 @@ void repush_to_b(l_list **stack_b, int pos) {
 	else {
       rra(stack_b);
     }
-    //current_index = searching_for_index(stack_b, (*stack_b) -> index);
   
+}
+void b_rotation(l_list **stack_b, int pos) { 
+
+  if(pos == -1)
+    return;
+    if (pos < (lst_size(*stack_b) / 2)) {
+      rb(stack_b);
+    } 
+	else {
+      rrb(stack_b);
+    }
 }
 int searching_for_index(l_list **stack_a, int indexx)
 {
@@ -223,19 +232,24 @@ void sorting(l_list **stack_a, l_list **stack_b)
 						index = searching_for_index(stack_a, (max));
 						break;
 					}
-					//ra(stack_b);
-					repush_to_b(stack_b, searching_for_index(stack_b, max));
+					
+					b_rotation(stack_b, searching_for_index(stack_b, max));
 				}
 				break;
 			}
 			else
 			{
-				push_a(stack_b, stack_a);
+				push_b(stack_b, stack_a);
 				index = searching_for_index(stack_a, (max));
 			}
-			// printf("%d" ,searching_for_index(stack_a, (max)));
-			// printf("%d" ,searching_for_index(stack_a, (max)));
 		}
 	}
-	//printf("%d", max);
+}
+void test(l_list **stack_a,l_list **stack_b)
+{
+	while(*stack_b != NULL)
+	{
+		//rrb(stack_b);
+		push_a(stack_a, stack_b);
+	}
 }
