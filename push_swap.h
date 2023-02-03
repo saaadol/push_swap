@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/03 01:31:14 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/03 08:13:13 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void a_rotation(l_list **stack_b, int pos);
 void b_rotation(l_list **stack_b, int pos);
 void push_b(l_list **stack_a, l_list **stack_b);
 void rb(l_list **stack_a);
-void sb(l_list **stack_a);
+void swap_b(l_list **stack_a);
 void rrb(l_list **head);
 int searching_for_index(l_list **stack_a, int indexx);
 int	ft_isdigit(int c);
@@ -73,5 +73,6 @@ char	*ft_strjoin(char *s1, char  *s2);
 void	ft_bzero(void *s, size_t n);
  char	**ft_free(char **str, size_t j);
 int	ft_isdigit2(char  *str);
+int check_biggest_index2(l_list *stack_a);
 
 #endif

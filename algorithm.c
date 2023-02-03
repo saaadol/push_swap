@@ -37,22 +37,22 @@ void case5(l_list **stack_a, l_list **stack_b)
 
 void case100(l_list **stack_a, l_list **stack_b, int size)
 {
-	int stack_size =  size / 20;
-	int chunk = 1;
+	int chunk = 30;
 	int counter = 0;
 	while(*stack_a != NULL)
 	{	
-		if ((*stack_a) -> index <  chunk)
+		if ((*stack_a) -> index < chunk)
 		{
 			push_b(stack_b, stack_a);
 			counter++;
 		}
 		else if (counter == chunk)
 		{
-			chunk += 1;
+			chunk += 30;
 		}
 		else
 		{
+			//ra(stack_a);
 			a_rotation(stack_a, searching_for_index(stack_a, (*stack_a) -> index));
 			
 		}
@@ -128,6 +128,7 @@ int check_biggest_index(l_list *stack_a, int *position)
 	*position = stach;
 	free(ptr);
 	i++;
+
 	return (max - i +1);
 }
 int check_smallest_index(l_list *stack_a)
@@ -173,22 +174,34 @@ int checker(l_list **stack_a)
 	return 0;
 }
 
-    
+int check_biggest_index2(l_list *stack_a)
+{
+	l_list *ptr;
+	int max; 
+	ptr = stack_a;
+	max = ptr -> index;
+	while (ptr != NULL)
+	{
+		if (ptr -> index > max)
+			max = ptr -> index;
+		ptr = ptr -> next;		
+	}
+	
+	return (max);
+}
 void sorting(l_list **stack_a, l_list **stack_b)
 {
 
 	int position = 0;
 	int index_b;
-	int max = check_biggest_index(*stack_a, &position);
+	int counter = 0;
+	int max = check_biggest_index(*stack_a,&position);
 	//int tmax =max;
-	int size ;
+	int size  = lst_size(*stack_a) / 4;
 	int index = searching_for_index(stack_a, max);
-	//printf("%d ", index);
+	printf("%d ", max);
 	while (((*stack_a) != NULL  && (checker(stack_a) != 0)))
 	{
-		// printf("index : %d\n", index);
-		// printf("checkeer: %d\n", checker(stack_a));
-		// printf("stack_b : %d\n", searching_for_index(stack_b, max));
 		while (index == searching_for_index(stack_a, max))
 		{
 			if (index == lst_size(*stack_a) -1)
@@ -196,16 +209,17 @@ void sorting(l_list **stack_a, l_list **stack_b)
 				max--;
 				index = searching_for_index(stack_a, max);
 			}
-			else if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)) || ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0)))
+			else if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)) 
+				|| ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0)))
 				{
 					if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)))
 					{
 						swap_a(stack_a);
 						index = searching_for_index(stack_a,max);
 					}
-					else if ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max - 1)) == 0))
+					else if ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0))
 					{
-						swap_a(stack_b);
+						swap_b(stack_b);
 					}
 					else
 					{
@@ -231,8 +245,7 @@ void sorting(l_list **stack_a, l_list **stack_b)
 						max--;
 						index = searching_for_index(stack_a, (max));
 						break;
-					}
-					
+					}	
 					b_rotation(stack_b, searching_for_index(stack_b, max));
 				}
 				break;
@@ -241,7 +254,7 @@ void sorting(l_list **stack_a, l_list **stack_b)
 			{
 				push_b(stack_b, stack_a);
 				index = searching_for_index(stack_a, (max));
-			}
+			}	
 		}
 	}
 }
