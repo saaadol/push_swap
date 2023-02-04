@@ -34,30 +34,31 @@ void case5(l_list **stack_a, l_list **stack_b)
     push_a(stack_a, stack_b); 
 }
 
-
 void case100(l_list **stack_a, l_list **stack_b, int size)
 {
 	int chunk = 30;
 	int counter = 0;
 	while(*stack_a != NULL)
 	{	
-		if ((*stack_a) -> index < chunk)
+	if ((*stack_a) -> index < chunk)
 		{
 			push_b(stack_b, stack_a);
 			counter++;
 		}
 		else if (counter == chunk)
 		{
-			chunk += 30;
+			if (size > 100)
+				chunk += 30;
+			else
+				chunk += 15;
 		}
 		else
 		{
-			//ra(stack_a);
 			a_rotation(stack_a, searching_for_index(stack_a, (*stack_a) -> index));
-			
 		}
 	}
 }
+
 void a_rotation(l_list **stack_b, int pos) { 
 
   if(pos == -1)
@@ -189,75 +190,74 @@ int check_biggest_index2(l_list *stack_a)
 	
 	return (max);
 }
-void sorting(l_list **stack_a, l_list **stack_b)
-{
+// void sorting(l_list **stack_a, l_list **stack_b)
+// {
 
-	int position = 0;
-	int index_b;
-	int counter = 0;
-	int max = check_biggest_index(*stack_a,&position);
-	//int tmax =max;
-	int size  = lst_size(*stack_a) / 4;
-	int index = searching_for_index(stack_a, max);
-	printf("%d ", max);
-	while (((*stack_a) != NULL  && (checker(stack_a) != 0)))
-	{
-		while (index == searching_for_index(stack_a, max))
-		{
-			if (index == lst_size(*stack_a) -1)
-			{
-				max--;
-				index = searching_for_index(stack_a, max);
-			}
-			else if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)) 
-				|| ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0)))
-				{
-					if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)))
-					{
-						swap_a(stack_a);
-						index = searching_for_index(stack_a,max);
-					}
-					else if ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0))
-					{
-						swap_b(stack_b);
-					}
-					else
-					{
-						ss(stack_a, stack_b);
-						index = searching_for_index(stack_a,max);
-					}
-				}
-			else if (searching_for_index(stack_a, max) == 0)
-			{
-				ra(stack_a);
-				max--;
-				index = searching_for_index(stack_a, max);
-				break;
-			}
-			else if (searching_for_index(stack_a, max) == -1)
-			{
-				while ((*stack_b) != NULL)
-				{
-					if (searching_for_index(stack_b, max) == 0)
-					{
-						push_a(stack_a, stack_b);
-						ra(stack_a);
-						max--;
-						index = searching_for_index(stack_a, (max));
-						break;
-					}	
-					b_rotation(stack_b, searching_for_index(stack_b, max));
-				}
-				break;
-			}
-			else
-			{
-				push_b(stack_b, stack_a);
-				index = searching_for_index(stack_a, (max));
-			}	
-		}
-	}
-}
+// 	int position = 0;
+// 	int index_b;
+// 	int counter = 0;
+// 	int max = check_biggest_index(*stack_a,&position);
+// 	//int tmax =max;
+// 	int size  = lst_size(*stack_a) / 4;
+// 	int index = searching_for_index(stack_a, max);
+// 	while (((*stack_a) != NULL  && (checker(stack_a) != 0)))
+// 	{
+// 		while (index == searching_for_index(stack_a, max))
+// 		{
+// 			if (index == lst_size(*stack_a) -1)
+// 			{
+// 				max--;
+// 				index = searching_for_index(stack_a, max);
+// 			}
+// 			else if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)) 
+// 				|| ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0)))
+// 				{
+// 					if ((index == 1 && (searching_for_index(stack_a, (max - 1)) == 0)))
+// 					{
+// 						swap_a(stack_a);
+// 						index = searching_for_index(stack_a,max);
+// 					}
+// 					else if ((searching_for_index(stack_b, (max)) == 1) && (searching_for_index(stack_b, (max -1)) == 0))
+// 					{
+// 						swap_b(stack_b);
+// 					}
+// 					else
+// 					{
+// 						ss(stack_a, stack_b);
+// 						index = searching_for_index(stack_a,max);
+// 					}
+// 				}
+// 			else if (searching_for_index(stack_a, max) == 0)
+// 			{
+// 				ra(stack_a);
+// 				max--;
+// 				index = searching_for_index(stack_a, max);
+// 				break;
+// 			}
+// 			else if (searching_for_index(stack_a, max) == -1)
+// 			{
+// 				while ((*stack_b) != NULL)
+// 				{
+// 					if (searching_for_index(stack_b, max) == 0)
+// 					{
+// 						push_a(stack_a, stack_b);
+// 						ra(stack_a);
+// 						max--;
+// 						index = searching_for_index(stack_a, (max));
+// 						break;
+// 					}	
+// 					b_rotation(stack_b, searching_for_index(stack_b, max));
+// 				}
+// 				break;
+// 			}
+// 			else
+// 			{
+// 				push_b(stack_b, stack_a);
+// 				index = searching_for_index(stack_a, (max));
+// 			}	
+// 		}
+// 	}
+// }
 void test(l_list **stack_a,l_list **stack_b)
 {
 	while(*stack_b != NULL)
@@ -265,4 +265,55 @@ void test(l_list **stack_a,l_list **stack_b)
 		//rrb(stack_b);
 		push_a(stack_a, stack_b);
 	}
+}
+void sorting(l_list **stack_a,l_list **stack_b)
+{
+	int position = 0 ;
+	int max = check_biggest_index(*stack_b, &position);
+	int flag = 0;
+	int index = searching_for_index(stack_b, max);
+		while ((*stack_b) != NULL && index == searching_for_index(stack_b, max))
+		{
+			if ((*stack_a) && (*stack_a) -> next && (*stack_a) -> data > (*stack_a) -> next -> data)
+			{
+				swap_a(stack_a);
+				max--;
+				index = searching_for_index(stack_b, max);
+				//printf("%d------------------", index);
+			}
+			else if ((searching_for_index(stack_b, (max - 1)) == 0))
+			{
+				push_a(stack_a,stack_b);
+				index = searching_for_index(stack_b, max);
+			}
+			else if (index == 2 && (searching_for_index(stack_b, (max - 1)) == 0))
+			{
+				push_a(stack_a,stack_b);
+				max--;
+				ra(stack_b);
+				push_a(stack_a,stack_b);
+				max--;
+				swap_a(stack_a);
+				index = searching_for_index(stack_b, max);
+			}
+			else if (index == 1 && (searching_for_index(stack_b, (max - 1)) == 0)) 
+				{
+						swap_b(stack_b);
+						index = searching_for_index(stack_b,max);
+				
+				}
+			else if (searching_for_index(stack_b, max) == 0)
+			{
+				push_a(stack_a,stack_b);
+				max--;
+				index = searching_for_index(stack_b, max);
+			}
+			else 
+			{
+				b_rotation(stack_b,index);
+				index = searching_for_index(stack_b, max);
+			}
+	}
+	if ((*stack_b) == NULL && (*stack_a) -> data > (*stack_a) -> next -> data)
+		swap_a(stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:01 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/03 09:18:55 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/04 06:20:39 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,14 +142,15 @@ int main(int argc, char **argv)
     l_list *stack_b = NULL;
 	committing_index(stack_a);
 	case100(&stack_a,&stack_b,lst_size(stack_a));
-	sorting(&stack_b, &stack_a);
+	
+	sorting(&stack_a, &stack_b);
 	//test(&stack_a, &stack_b);
-	l_list *current = stack_b;
-    while (current != NULL)
-    {
-        printf("Data: %d  index : %d\n", current->data, current->index);
-        current = current->next;
-    }
+	l_list *current = stack_a;
+    // while (current != NULL)
+    // {
+    //     printf("Data: %d  index : %d\n", current->data, current->index);
+    //     current = current->next;
+    // }
     current = stack_b;
     while (current != NULL)
     {

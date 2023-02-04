@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/03 08:13:13 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/04 04:46:57 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_bzero(void *s, size_t n);
  char	**ft_free(char **str, size_t j);
 int	ft_isdigit2(char  *str);
 int check_biggest_index2(l_list *stack_a);
+void case100_1(l_list **stack_a, l_list **stack_b, int size);
 
 #endif
