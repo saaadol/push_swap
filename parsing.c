@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:37:22 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/03 00:39:04 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/05 04:51:34 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_isdigit2(char  *str)
 	int i = 0;
 	while (str[i])
 	{
-		if (str[i] >= 48 && str[i] <= 57)
+		if ((str[i] >= 48 && str[i] <= 57) || (str[i] == '-'))
 			i++;
 		else
 			return (0);

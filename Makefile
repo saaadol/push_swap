@@ -1,16 +1,16 @@
-NAME = push_swap.a
-files = push_swap.c
-OBJ = $(NAME.c = .o)
+NAME = push_swap
+FILES = push_swap.c linked_list_utils.c indexation.c algorithm.c instructions.c parsing.c libft.c 
+OBJ = $(FILES:.c=.o)
 CC = cc
-CFLAGS = -Wall -Wflag -Werror  -I push_swap.h
+CFLAGS = 
 
 all: $(NAME)
 $(NAME): $(OBJ)
-	ar -crs $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 %.o : %.c push_swap.h
-	%(CC) -c $(CFLAGS) $<
+	$(CC) $(CFLAGS) -c $<
 clean :
 	rm -rf $(OBJ)
-fclean :
+fclean : clean
 	rm -rf $(NAME)
 re: fclean all

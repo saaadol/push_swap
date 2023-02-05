@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:51 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/04 04:46:57 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/05 05:23:24 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
+#include <unistd.h>
 typedef struct l_list{
 	int data;
 	int index;
@@ -49,6 +50,7 @@ void b_rotation(l_list **stack_b, int pos);
 void push_b(l_list **stack_a, l_list **stack_b);
 void rb(l_list **stack_a);
 void swap_b(l_list **stack_a);
+int checker(l_list **stack_a);
 void rrb(l_list **head);
 int searching_for_index(l_list **stack_a, int indexx);
 int	ft_isdigit(int c);

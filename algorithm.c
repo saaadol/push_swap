@@ -38,9 +38,10 @@ void case100(l_list **stack_a, l_list **stack_b, int size)
 {
 	int chunk = 30;
 	int counter = 0;
+	l_list *current;
 	while(*stack_a != NULL)
-	{	
-	if ((*stack_a) -> index < chunk)
+	{
+		if ((*stack_a) -> index < chunk)
 		{
 			push_b(stack_b, stack_a);
 			counter++;
@@ -266,6 +267,14 @@ void test(l_list **stack_a,l_list **stack_b)
 		push_a(stack_a, stack_b);
 	}
 }
+// void case3(**stack_a)
+// {
+// 	if ((*stack_a) && (*stack_a) -> next && (*stack_a) -> data > (*stack_a) -> next -> data)
+// 	{
+// 		swap_a(stack_a);
+// 	}
+// 	else if ()
+// }
 void sorting(l_list **stack_a,l_list **stack_b)
 {
 	int position = 0 ;
@@ -316,4 +325,5 @@ void sorting(l_list **stack_a,l_list **stack_b)
 	}
 	if ((*stack_b) == NULL && (*stack_a) -> data > (*stack_a) -> next -> data)
 		swap_a(stack_a);
+	//printf("%d", (*stack_a) -> data);
 }

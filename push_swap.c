@@ -6,7 +6,7 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:21:01 by souledla          #+#    #+#             */
-/*   Updated: 2023/02/04 06:20:39 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/05 06:20:52 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,12 @@ char *ft_join(char **strs, int size, char c)
 int main(int argc, char **argv)
 {
     if(argc == 1)
-        exit(EXIT_FAILURE);
+	{
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
+		
+	}
+	
     checking_str(argv, argc);
 	l_list *stack_a;
     
@@ -146,11 +151,11 @@ int main(int argc, char **argv)
 	sorting(&stack_a, &stack_b);
 	//test(&stack_a, &stack_b);
 	l_list *current = stack_a;
-    // while (current != NULL)
-    // {
-    //     printf("Data: %d  index : %d\n", current->data, current->index);
-    //     current = current->next;
-    // }
+    while (current != NULL)
+    {
+        printf("Data: %d  index : %d\n", current->data, current->index);
+        current = current->next;
+    }
     current = stack_b;
     while (current != NULL)
     {
