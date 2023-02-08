@@ -6,60 +6,25 @@
 /*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:35:17 by souledla          #+#    #+#             */
-/*   Updated: 2023/01/22 05:40:00 by souledla         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:59:21 by souledla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	lst_size(t_list *head)
+{
+	int		counter;
+	t_list	*current;
 
-void *create_node(int data)
-{
-	l_list *node = malloc(sizeof(l_list));
-	node -> data = data;
-	node ->next = NULL;
-	return node;
-}
-void append_node(l_list **head, l_list *node)
-{
-	
-	if (!*head)
-		*head = node;
-	l_list *current = *head;
-	while ((*head) -> next != NULL)
-		*head = (*head) -> next;
-	(*head) -> next = node;
-	node -> next = NULL;
-	*head = current;
-	//printf("%d", (*head)->next->next->data);
-}
-void get_node(l_list *head, int index)
-{
-	int counter = 0;
-	l_list *current = head;
-	while (head -> next != NULL)
-	{
-		if (counter == index)
-		{
-			printf("%d", head->data);
-			break;
-		}
-		head = head->next;
-		counter++;
-	} 
-	head = NULL;
-}
-int lst_size(l_list *head)
-{
 	if (head == NULL)
-		return 0;
-	l_list *current = head;
-	int counter; 
+		return (0);
+	current = head;
 	counter = 0;
 	while (current)
 	{
 		current = current -> next;
-		counter++; 
+		counter++;
 	}
-	return counter;
+	return (counter);
 }

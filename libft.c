@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: souledla <souledla@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/06 17:12:00 by souledla          #+#    #+#             */
+/*   Updated: 2023/02/06 17:12:12 by souledla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
+
 static size_t	ft_count_word(char const *s, char c)
 {
 	size_t	i;
@@ -29,7 +41,7 @@ static size_t	ft_strlen_checker(char const *s, char c)
 	return (i);
 }
 
- char	**ft_free(char **str, size_t j)
+char	**ft_free(char **str, size_t j)
 {
 	int	i;
 

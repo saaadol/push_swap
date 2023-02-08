@@ -1,8 +1,8 @@
 NAME = push_swap
-FILES = push_swap.c linked_list_utils.c indexation.c algorithm.c instructions.c parsing.c libft.c 
+FILES = push_swap.c linked_list_utils.c indexation.c algorithm.c instructions_a.c case3_case5.c filling_list_func.c parsing_utils.c instructions_b.c parsing.c libft.c algorithm_utils.c
 OBJ = $(FILES:.c=.o)
 CC = cc
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror -I push_swap.h
 
 all: $(NAME)
 $(NAME): $(OBJ)
